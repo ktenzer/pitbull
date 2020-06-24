@@ -1,0 +1,7 @@
+apiVersion: pitbull.com/v1alpha1
+kind: Pitbull
+metadata:
+  name: example-pitbull
+spec:
+  # Add fields here
+  size: 3

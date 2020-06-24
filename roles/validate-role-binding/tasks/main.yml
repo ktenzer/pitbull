@@ -1,0 +1,14 @@
+---
+#- name: Get RoleBinding
+#  k8s_info:
+#    api_version: rbac.authorization.k8s.io/v1
+#    kind: RoleBinding
+#    name: "{{ meta.name }}"
+#  register: rolebinding
+
+#- name: Set Application Domain
+#  set_fact:
+#    rolebinding_subject: "{{ rolebinding.subjects[0].kind }}"
+
+#- debug:
+#    msg: "Application Domain: {{ rolebinding }}"

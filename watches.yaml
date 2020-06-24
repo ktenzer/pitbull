@@ -1,0 +1,13 @@
+---
+#- version: v1alpha1
+#  group: pitbull.com
+#  kind: Pitbull
+#  role: pitbull
+
+- version: v1
+  group: rbac.authorization.k8s.io
+  #group: core.k8s.io
+  kind: RoleBinding
+  role: validate-role-binding
+  manageStatus: False
+  watchDependentResources: False
