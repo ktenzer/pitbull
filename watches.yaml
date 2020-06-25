@@ -7,7 +7,7 @@
 - version: v1
   group: rbac.authorization.k8s.io
   #group: core.k8s.io
-  kind: RoleBinding
+  kind: Role
   role: validate-role-binding
   manageStatus: False
-  watchDependentResources: False
+#  watchDependentResources: False
