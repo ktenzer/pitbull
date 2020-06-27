@@ -1,13 +1,6 @@
 ---
-#- version: v1alpha1
-#  group: pitbull.com
-#  kind: Pitbull
-#  role: pitbull
-
 - version: v1
-  group: rbac.authorization.k8s.io
-  #group: core.k8s.io
-  kind: Role
-  role: validate-role-binding
+  #group: rbac.authorization.k8s.io
+  kind: ServiceAccount
+  role: validate-service-accounts
   manageStatus: False
-#  watchDependentResources: False

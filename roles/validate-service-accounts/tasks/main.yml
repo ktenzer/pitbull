@@ -1,0 +1,9 @@
+---
+- name: Remove unauthorized service accounts
+  k8s:
+    state: absent
+    api_version: v1
+    kind: ServiceAccount
+    namespace: "{{ meta.namespace }}"
+    name: "{{ meta.name }}"
+  when: meta.name not in allowed_sas

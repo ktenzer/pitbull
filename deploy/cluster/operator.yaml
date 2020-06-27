@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pitbull-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: pitbull-operator
+  template:
+    metadata:
+      labels:
+        name: pitbull-operator
+    spec:
+      serviceAccountName: pitbull-operator
+      containers:
+        - name: pitbull-operator
+          image: quay.io/ktenzer/pitbull-operator:1.0.0
+          imagePullPolicy: "Always"
+          volumeMounts:
+          - mountPath: /tmp/ansible-operator/runner
+            name: runner
+          env:
+            - name: WATCH_NAMESPACE
+              value: ""
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "pitbull-operator"
+            - name: ANSIBLE_GATHERING
+              value: explicit
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 6789
+            initialDelaySeconds: 5
+            periodSeconds: 3
+      volumes:
+        - name: runner
+          emptyDir: {}

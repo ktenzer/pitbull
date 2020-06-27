@@ -5,13 +5,8 @@
     kind: Role
     name: "{{ meta.name }}"
     namespace: "{{ meta.namespace }}"
-  register: role
+  register: ocp_role
 
 - name: Set Application Domain
   set_fact:
-    role: "{{ role.resources[0].rules }}"
-
-- debug:
-    #msg: "Role: {{ role.resources[0].apiVersion }}"
-    msg: "Role: {{ item }}"
-  loop: "{{ role }}"
+    ocp_role: "{{ ocp_role | json_query('resources[*].rules[*].verbs') }}"
